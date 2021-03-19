@@ -13,6 +13,7 @@ fn main() {
         let guess = get_input(count);
         count += 1;
 
+        // converts guess to u8
         let guess: u8 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
@@ -32,7 +33,7 @@ fn secret() -> u8 {
     secret
 }
 
-// Takes user string input and returns u8
+// Takes user string input
 fn get_input(count: u8) -> String {
     
     let mut guess = String::new();
