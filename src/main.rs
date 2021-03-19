@@ -38,7 +38,7 @@ fn get_input(count: u8) -> String {
     
     let mut guess = String::new();
 
-    print!("{}) Input your guess: ", &count);
+    print!("{}) Input your guess: ", count);
 
     io::stdout()
         .flush()
