@@ -45,7 +45,10 @@ fn get_input(count: u8) -> u8 {
 
     let guess: u8 = match guess.trim().parse() {
         Ok(num) => num,
-        Err(_) => get_input(count+1)
+        Err(_) => {
+            println!("Numbers only... lol.");
+            get_input(count+1)
+        }
     };
 
     guess
