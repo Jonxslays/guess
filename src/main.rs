@@ -19,10 +19,9 @@ fn main() {
             Err(_) => continue,
         };
 
-        if check(guess, secret, count) == true {
-            break;
-        } else {
-            continue;
+        match check(guess, secret, count) {
+            true => break,
+            false => continue,
         }
     }
 }
@@ -58,16 +57,20 @@ fn get_input(count: u8) -> String {
 fn check(num: u8, secret: u8, count: u8) -> bool {
     let mut output: bool = false;
 
-    if num == secret {
-        println!("Thats correct!");
-        println!("It took you {} tries.", count - 1);
-        output = true;
-    } else if num > secret {
-        println!("Too big.");
-        println!("--------------------");
-    } else {
-        println!("Too small.");
-        println!("--------------------");
+    match (num, secret) {
+        (..) if num == secret => {
+            output = true; 
+            println!("Thats correct!");
+            println!("It took you {} tries.", count - 1);
+        },
+        (..) if num > secret => {
+            println!("Too big.");
+            println!("--------------------");
+        },
+        _ => {
+            println!("Too small.");
+            println!("--------------------");
+        }
     }
     
     output
