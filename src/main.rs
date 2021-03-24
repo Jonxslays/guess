@@ -1,6 +1,6 @@
 use rand::Rng;
 use std::cmp::Ordering;
-use std::io::{self, Write};
+use std::io::{stdin, stdout, Write};
 
 // main loop running game logic
 fn main() {
@@ -31,14 +31,10 @@ fn secret() -> u8 {
 fn get_input(count: u8) -> u8 {
     
     let mut guess = String::new();
-    let mut out = io::stdout();
 
     print!("{}) Input your guess: ", count);
-    out.flush().expect("Unable to flush stdout.");
-
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Unable to read line.");
+    flush_out();
+    read_in(&mut guess);
 
     println!("Analyzing {}", guess);
     println!("--------------------");
@@ -75,4 +71,16 @@ fn check(num: u8, secret: u8, count: u8) -> bool {
     }
     
     output
+}
+
+// Flushes stdout
+fn flush_out() {
+    stdout().flush()
+        .expect("Failed to flush stdout.");
+}
+
+// Reads text from stdin
+fn read_in(input: &mut String) {
+    stdin().read_line(input)
+        .expect("Failed to read stdin.");
 }
